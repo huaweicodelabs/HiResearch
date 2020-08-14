@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements HiResearchTaskErr
      */
     @OnClick(R.id.btn_login)
     public void onLoginClicked(View view) {
+        //登录
         HiResearchLoginTask loginActiveTask = new HiResearchLoginTask(this, disposable);
         loginActiveTask.registerErrorListener(this);
         loginActiveTask.registerTaskListener(new HiResearchLoginTaskListener() {
@@ -148,7 +149,17 @@ public class MainActivity extends AppCompatActivity implements HiResearchTaskErr
      */
     @OnClick(R.id.btn_device)
     public void onDeviceClicked(View view) {
-        
+        HiResearchConnectDeviceTask deviceActiveTask = new HiResearchConnectDeviceTask(this, disposable);
+        deviceActiveTask.registerErrorListener(this);
+        deviceActiveTask.registerTaskListener(new HiResearchDeviceTaskListener() {
+            @Override
+            public void onDeviceStatusChanged(SensorProDeviceInfo deviceInfo) {
+                if (deviceInfo.getDeviceConnectState() == 2) {
+                    btnMeasure.setEnabled(true);
+                }
+            }
+        });
+        deviceActiveTask.start();
     }
 
     /**
@@ -176,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements HiResearchTaskErr
         });
     }
 
+    /**
+     * 房颤测量结果回调
+     * @param atrialMeasureResult
+     */
     @Override
     public void onAtrialMeasureResult(AtrialMeasureResult atrialMeasureResult) {
 

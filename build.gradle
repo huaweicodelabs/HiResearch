@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        flatDir dirs: "libs"
         maven { url 'https://developer.huawei.com/repo/' }
         google()
         jcenter()
@@ -8,7 +9,20 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
         classpath 'com.huawei.agconnect:agcp:1.2.1.301'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.2'
+        classpath "com.huawei.codelabs.hiresearch.plugin:codelabplugin:1.0.0"
+
+        classpath 'com.squareup.okhttp3:okhttp:3.14.4'
+        classpath 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+
+        //rxjava2
+        classpath 'io.reactivex.rxjava2:rxjava:2.1.13'
+        //retrofit2
+        classpath 'com.squareup.retrofit2:retrofit:2.8.1'
+        classpath 'com.squareup.retrofit2:converter-gson:2.8.0'
+        classpath 'com.squareup.retrofit2:converter-scalars:2.5.0'
+        classpath 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+        classpath 'com.squareup.retrofit2:retrofit-converters:2.5.0'
     }
 }
 

@@ -1,8 +1,12 @@
 package com.huawei.codelabs.hiresearch.healthstudy.util;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 
 import java.util.Stack;
+
+import kotlin.Suppress;
 
 /**
  * 应用程序Activity管理类：用于Activity管理和应用程序退出
@@ -94,7 +98,7 @@ public class ActivityManager {
      * @return
      */
     public <T extends Activity> boolean isActivityExist(Class<T> clz) {
-        boolean res;
+        boolean res =false;
         Activity activity = getActivity(clz);
         if (activity == null) {
             res = false;
@@ -115,6 +119,7 @@ public class ActivityManager {
      * @param clazz Activity 的类对象
      * @return
      */
+    @SuppressWarnings("unchecked")
     public <T extends Activity> T getActivity(Class<T> clazz) {
         for (Activity activity : activityStack) {
             if (activity.getClass().equals(clazz)) {

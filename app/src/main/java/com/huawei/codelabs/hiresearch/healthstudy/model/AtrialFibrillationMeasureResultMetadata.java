@@ -87,11 +87,11 @@ public class AtrialFibrillationMeasureResultMetadata extends HiResearchBaseMetad
 
     private String formatAtrialFibrillationType(@AtrialFibrillationMeasureResultType int type) {
         switch (type) {
-            case 0:
+            case AtrialFibrillationMeasureResultType.SINUS_RHYTHM:
                 return "窦性心律";
-            case 1:
+            case AtrialFibrillationMeasureResultType.SUSPECTED_ATRIAL_FIBRILLATION:
                 return "疑似房颤";
-            case 2:
+            case AtrialFibrillationMeasureResultType.TO_BE_CONFIRMED:
                 return "待确认";
             default:
                 return "待确认";
@@ -108,5 +108,35 @@ public class AtrialFibrillationMeasureResultMetadata extends HiResearchBaseMetad
         this(userNo, measureResult.getAtrialFibrillationMeasureResult());
     }
 
+    public String getUserNo() {
+        return userNo;
+    }
 
+    public String getResult() {
+        return result;
+    }
+
+    public String getProbability() {
+        return probability;
+    }
+
+    public String getRiskLevel() {
+        return riskLevel;
+    }
+
+    public void setUserNo(String userNo) {
+        this.userNo = userNo;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public void setProbability(String probability) {
+        this.probability = probability;
+    }
+
+    public void setRiskLevel(String riskLevel) {
+        this.riskLevel = riskLevel;
+    }
 }
