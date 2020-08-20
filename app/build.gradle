@@ -26,7 +26,9 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            // 应用版本号添加后缀
             versionNameSuffix ""
+            // 签名
             signingConfig signingConfigs.healthstudy
             lintOptions {
                 checkReleaseBuilds false

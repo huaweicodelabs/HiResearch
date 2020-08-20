@@ -1,6 +1,7 @@
 package com.huawei.codelabs.hiresearch.healthstudy;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -38,6 +39,8 @@ import butterknife.OnClick;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class MainActivity extends AppCompatActivity implements HiResearchTaskErrorListener, HiResearchAtrialTaskListener {
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.btn_join)
@@ -47,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements HiResearchTaskErr
     @BindView(R.id.btn_measure)
     Button btnMeasure;
 
-    private String TAG = this.getClass().getSimpleName();
     private CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
@@ -169,6 +171,16 @@ public class MainActivity extends AppCompatActivity implements HiResearchTaskErr
      */
     @OnClick(R.id.btn_measure)
     public void onMeasureClicked(View view) {
+    
+    }
+
+    /**
+     * 房颤测量结果回调
+     *
+     * @param atrialMeasureResult
+     */
+    @Override
+    public void onAtrialMeasureResult(AtrialMeasureResult atrialMeasureResult) {
 
     }
 
@@ -182,17 +194,9 @@ public class MainActivity extends AppCompatActivity implements HiResearchTaskErr
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG);
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
+                Log.d(TAG, msg);
             }
         });
-    }
-
-    /**
-     * 房颤测量结果回调
-     * @param atrialMeasureResult
-     */
-    @Override
-    public void onAtrialMeasureResult(AtrialMeasureResult atrialMeasureResult) {
-
     }
 }
